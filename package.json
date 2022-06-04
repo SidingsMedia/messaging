@@ -1,0 +1,31 @@
+{
+  "name": "api-sidingsmedia-com",
+  "private": true,
+  "version": "0.1.0",
+  "description": "API for Sidings Media sites",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/strapi": "4.1.12",
+    "@strapi/plugin-users-permissions": "4.1.12",
+    "@strapi/plugin-i18n": "4.1.12",
+    "mysql": "2.18.1"
+  },
+  "author": {
+    "name": "Sidings Media",
+    "email": "contact@sidingsmedia.com"
+  },
+  "strapi": {
+    "uuid": "2cfb4b5f-e42f-4aa8-87b4-01aad6f2df08"
+  },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
