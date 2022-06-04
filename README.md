@@ -3,9 +3,11 @@ SPDX-FileCopyrightText: 2022 Sidings Media <contact@sidingsmedia.com>
 SPDX-License-Identifier: MIT
 -->
 
-# Project name
+# API.SIDINGSMEDIA.COM
 
-A description of what this project is and what it does
+The API that powers both `sidingsmedia.com` and `blog.sidingsmedia.com`.
+It provides a CMS that is used to control all content that appears on
+the site. It is based upon the Strapi CMS system.
 
 ## Licence
 This repo uses the [REUSE](https://reuse.software) standard in order to
