@@ -3,8 +3,11 @@ Upstream-Name: template
 Upstream-Contact: Sidings Media <contact@sidingsmedia.com>
 Source: 
 
-# Sample paragraph, commented out:
-#
-# Files: src/*
-# Copyright: $YEAR $NAME <$CONTACT>
-# License: ...
+Files: src/api/*
+Copyright: 2022 Sidings Media <contact@sidingsmedia.com>
+License: MIT
+
+Files: src/components/*
+Copyright: 2022 Sidings Media <contact@sidingsmedia.com>
+License: MIT
+

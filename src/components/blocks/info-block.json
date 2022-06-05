@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_info_blocks",
+  "info": {
+    "displayName": "InfoBlock"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Info": {
+      "type": "richtext",
+      "required": true
+    },
+    "Image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
