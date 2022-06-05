@@ -15,7 +15,8 @@
     "@strapi/plugin-i18n": "4.1.12",
     "@strapi/plugin-users-permissions": "4.1.12",
     "@strapi/strapi": "4.1.12",
-    "mysql": "2.18.1"
+    "mysql": "2.18.1",
+    "strapi-plugin-fuzzy-search": "^1.9.3"
   },
   "author": {
     "name": "Sidings Media",
