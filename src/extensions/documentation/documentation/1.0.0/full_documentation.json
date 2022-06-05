@@ -2,19 +2,19 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "DOCUMENTATION",
+    "title": "api.sidingsmedia.com documentation",
     "description": "",
     "termsOfService": "YOUR_TERMS_OF_SERVICE_URL",
     "contact": {
-      "name": "TEAM",
-      "email": "contact-email@something.io",
-      "url": "mywebsite.io"
+      "name": "Sidings Media",
+      "email": "contact@sidingsmedia.com",
+      "url": "https://status.sidingsmedia.com"
     },
     "license": {
-      "name": "Apache 2.0",
-      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
     },
-    "x-generation-date": "2022-06-05T15:06:49.295Z"
+    "x-generation-date": "2022-06-05T15:27:54.387Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -28,8 +28,12 @@
   },
   "servers": [
     {
-      "url": "http://localhost:1337/api",
+      "url": "http://localhost:1337",
       "description": "Development server"
+    },
+    {
+      "url": "https://api.sidingsmedia.com",
+      "description": "Production server"
     }
   ],
   "externalDocs": {
