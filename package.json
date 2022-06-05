@@ -18,6 +18,7 @@
     "mysql": "2.18.1",
     "strapi-plugin-fuzzy-search": "^1.9.3",
     "strapi-plugin-local-image-sharp": "^1.1.0",
+    "strapi-plugin-sitemap": "^2.0.8",
     "strapi-prometheus": "^0.6.2"
   },
   "author": {

@@ -14,7 +14,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "x-generation-date": "2022-06-05T16:34:26.685Z"
+    "x-generation-date": "2022-06-05T16:52:56.586Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -237,6 +237,9 @@
           },
           "locale": {
             "type": "string"
+          },
+          "sitemap_exclude": {
+            "type": "boolean"
           }
         }
       },
@@ -390,6 +393,9 @@
               },
               "locale": {
                 "type": "string"
+              },
+              "sitemap_exclude": {
+                "type": "boolean"
               }
             }
           }
@@ -773,6 +779,9 @@
                             }
                           }
                         }
+                      },
+                      "sitemap_exclude": {
+                        "type": "boolean"
                       }
                     }
                   }
@@ -1363,6 +1372,9 @@
                             }
                           }
                         }
+                      },
+                      "sitemap_exclude": {
+                        "type": "boolean"
                       }
                     }
                   }
@@ -1775,6 +1787,9 @@
                                                         }
                                                       }
                                                     }
+                                                  },
+                                                  "sitemap_exclude": {
+                                                    "type": "boolean"
                                                   }
                                                 }
                                               }
@@ -1988,6 +2003,9 @@
                                       },
                                       "locale": {
                                         "type": "string"
+                                      },
+                                      "sitemap_exclude": {
+                                        "type": "boolean"
                                       }
                                     }
                                   }
@@ -2061,6 +2079,9 @@
           },
           "locale": {
             "type": "string"
+          },
+          "sitemap_exclude": {
+            "type": "boolean"
           }
         }
       },
@@ -2449,6 +2470,9 @@
                                       }
                                     }
                                   }
+                                },
+                                "sitemap_exclude": {
+                                  "type": "boolean"
                                 }
                               }
                             }
@@ -3039,6 +3063,9 @@
                                       }
                                     }
                                   }
+                                },
+                                "sitemap_exclude": {
+                                  "type": "boolean"
                                 }
                               }
                             }
@@ -3451,6 +3478,9 @@
                                                                   }
                                                                 }
                                                               }
+                                                            },
+                                                            "sitemap_exclude": {
+                                                              "type": "boolean"
                                                             }
                                                           }
                                                         }
@@ -3664,6 +3694,9 @@
                                                 },
                                                 "locale": {
                                                   "type": "string"
+                                                },
+                                                "sitemap_exclude": {
+                                                  "type": "boolean"
                                                 }
                                               }
                                             }
@@ -3737,6 +3770,9 @@
                     },
                     "locale": {
                       "type": "string"
+                    },
+                    "sitemap_exclude": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -4151,6 +4187,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "sitemap_exclude": {
+                                "type": "boolean"
                               }
                             }
                           }
@@ -4741,6 +4780,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "sitemap_exclude": {
+                                "type": "boolean"
                               }
                             }
                           }
@@ -5153,6 +5195,9 @@
                                                                 }
                                                               }
                                                             }
+                                                          },
+                                                          "sitemap_exclude": {
+                                                            "type": "boolean"
                                                           }
                                                         }
                                                       }
@@ -5366,6 +5411,9 @@
                                               },
                                               "locale": {
                                                 "type": "string"
+                                              },
+                                              "sitemap_exclude": {
+                                                "type": "boolean"
                                               }
                                             }
                                           }
@@ -5439,6 +5487,9 @@
                   },
                   "locale": {
                     "type": "string"
+                  },
+                  "sitemap_exclude": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -5605,6 +5656,9 @@
           },
           "locale": {
             "type": "string"
+          },
+          "sitemap_exclude": {
+            "type": "boolean"
           }
         }
       },
@@ -5768,6 +5822,9 @@
               },
               "locale": {
                 "type": "string"
+              },
+              "sitemap_exclude": {
+                "type": "boolean"
               }
             }
           }
@@ -6306,6 +6363,9 @@
                                   }
                                 }
                               }
+                            },
+                            "sitemap_exclude": {
+                              "type": "boolean"
                             }
                           }
                         }
@@ -6622,6 +6682,9 @@
           },
           "locale": {
             "type": "string"
+          },
+          "sitemap_exclude": {
+            "type": "boolean"
           }
         }
       },
@@ -7165,6 +7228,9 @@
                                             }
                                           }
                                         }
+                                      },
+                                      "sitemap_exclude": {
+                                        "type": "boolean"
                                       }
                                     }
                                   }
@@ -7481,6 +7547,9 @@
                     },
                     "locale": {
                       "type": "string"
+                    },
+                    "sitemap_exclude": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -8050,6 +8119,9 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "sitemap_exclude": {
+                                      "type": "boolean"
                                     }
                                   }
                                 }
@@ -8366,6 +8438,9 @@
                   },
                   "locale": {
                     "type": "string"
+                  },
+                  "sitemap_exclude": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -8391,6 +8466,9 @@
               },
               "Policy": {
                 "type": "string"
+              },
+              "sitemap_exclude": {
+                "type": "boolean"
               }
             }
           }
@@ -8711,6 +8789,9 @@
                           }
                         }
                       }
+                    },
+                    "sitemap_exclude": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -9055,6 +9136,9 @@
                         }
                       }
                     }
+                  },
+                  "sitemap_exclude": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -9134,6 +9218,9 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "sitemap_exclude": {
+                "type": "boolean"
               }
             }
           }
@@ -9503,6 +9590,9 @@
                           }
                         }
                       }
+                    },
+                    "sitemap_exclude": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -9896,6 +9986,9 @@
                         }
                       }
                     }
+                  },
+                  "sitemap_exclude": {
+                    "type": "boolean"
                   }
                 }
               }
@@ -10401,6 +10494,9 @@
                                                     }
                                                   }
                                                 }
+                                              },
+                                              "sitemap_exclude": {
+                                                "type": "boolean"
                                               }
                                             }
                                           }
@@ -10992,6 +11088,9 @@
                                                   }
                                                 }
                                               }
+                                            },
+                                            "sitemap_exclude": {
+                                              "type": "boolean"
                                             }
                                           }
                                         }
@@ -11577,6 +11676,9 @@
                                                                   }
                                                                 }
                                                               }
+                                                            },
+                                                            "sitemap_exclude": {
+                                                              "type": "boolean"
                                                             }
                                                           }
                                                         }
@@ -12197,6 +12299,9 @@
                                                                 }
                                                               }
                                                             }
+                                                          },
+                                                          "sitemap_exclude": {
+                                                            "type": "boolean"
                                                           }
                                                         }
                                                       }
@@ -12423,6 +12528,9 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "sitemap_exclude": {
+                "type": "boolean"
               }
             }
           }
@@ -12912,6 +13020,9 @@
                                                     }
                                                   }
                                                 }
+                                              },
+                                              "sitemap_exclude": {
+                                                "type": "boolean"
                                               }
                                             }
                                           }
@@ -13009,6 +13120,9 @@
                           }
                         }
                       }
+                    },
+                    "sitemap_exclude": {
+                      "type": "boolean"
                     }
                   }
                 }
@@ -13522,6 +13636,9 @@
                                                   }
                                                 }
                                               }
+                                            },
+                                            "sitemap_exclude": {
+                                              "type": "boolean"
                                             }
                                           }
                                         }
@@ -13619,6 +13736,9 @@
                         }
                       }
                     }
+                  },
+                  "sitemap_exclude": {
+                    "type": "boolean"
                   }
                 }
               }
