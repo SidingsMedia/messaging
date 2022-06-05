@@ -92,6 +92,11 @@
       "components": [
         "blocks.related"
       ]
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
     }
   }
 }

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blocks_blog_top_bars",
+  "info": {
+    "displayName": "BlogTopBar"
+  },
+  "options": {},
+  "attributes": {
+    "FeaturedItems1": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.related-item",
+      "max": 4,
+      "min": 4
+    }
+  }
+}
