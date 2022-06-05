@@ -1,0 +1,25 @@
+{
+    "info": {
+        "title": "api.sidingsmedia.com documentation",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0",
+        "contact": {
+            "name": "Sidings Media",
+            "url": "https://status.sidingsmedia.com",
+            "email": "contact@sidingsmedia.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:1337",
+            "description": "Development server"
+        },
+        {
+            "url": "https://api.sidingsmedia.com",
+            "description": "Production server"
+        }
+    ]
+}

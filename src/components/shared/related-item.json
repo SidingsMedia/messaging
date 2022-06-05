@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_shared_related_items",
+  "info": {
+    "displayName": "RelatedItem"
+  },
+  "options": {},
+  "attributes": {
+    "article": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article.article"
+    }
+  }
+}
