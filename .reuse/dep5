@@ -11,3 +11,10 @@ Files: src/components/*
 Copyright: 2022 Sidings Media <contact@sidingsmedia.com>
 License: MIT
 
+Files: src/extensions/*
+Copyright: 2022 Sidings Media <contact@sidingsmedia.com>
+License: MIT
+
+Files: public/*
+Copyright: 2022 Sidings Media <contact@sidingsmedia.com>
+License: MIT
