@@ -26,7 +26,8 @@
     "email": "contact@sidingsmedia.com"
   },
   "strapi": {
-    "uuid": "2cfb4b5f-e42f-4aa8-87b4-01aad6f2df08"
+    "uuid": "2cfb4b5f-e42f-4aa8-87b4-01aad6f2df08",
+    "telemetryDisabled": true
   },
   "engines": {
     "node": ">=12.x.x <=16.x.x",
