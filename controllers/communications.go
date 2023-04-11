@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -57,7 +58,8 @@ func SendEmail() gin.HandlerFunc {
     m.SetHeader("Reply-To", message.Email)
     m.SetHeader("To", configs.ToAddr)
     m.SetHeader("Subject", message.Subject)
-    m.SetBody("text/plain", message.Message)
+    body := fmt.Sprintf("From: %s\n\nMessage:\n\n%s", message.Name, message.Message)
+    m.SetBody("text/plain", body)
 
     d := gomail.NewDialer(
       configs.SMTPServer,
