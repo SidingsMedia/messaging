@@ -5,9 +5,7 @@ SPDX-License-Identifier: MIT
 
 # API.SIDINGSMEDIA.COM
 
-The API that powers both `sidingsmedia.com` and `blog.sidingsmedia.com`.
-It provides a CMS that is used to control all content that appears on
-the site. It is based upon the Strapi CMS system.
+The API that provides general utilities for all sidings media web facing services.
 
 ## Licence
 This repo uses the [REUSE](https://reuse.software) standard in order to

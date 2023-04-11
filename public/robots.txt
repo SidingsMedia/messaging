@@ -1,6 +1,0 @@
-# SPDX-FileCopyrightText: 2015-2022 Strapi Solutions SAS
-# SPDX-License-Identifier: MIT
-
-# To prevent search engines from seeing the site altogether, uncomment the next two lines:
-# User-Agent: *
-# Disallow: /
