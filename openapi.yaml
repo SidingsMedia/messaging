@@ -1,0 +1,125 @@
+# SPDX-FileCopyrightText: 2023 Sidinggs Media
+# SPDX-License-Identifier: MIT
+
+openapi: 3.0.3
+info:
+  title: Sidings Media API
+  description: |
+      General utility APIs for all Sidings Media web based services
+  version: 0.1.0
+
+
+servers:
+  - url: http://localhost:{port}/{basePath}
+    description: Local development
+    variables:
+      port:
+        default: "3000"
+      basePath:
+        default: v1
+  - url: https://api.sidingsmedia.com/v1
+    description: Production
+
+
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Users name from contact form
+        email:
+          type: string
+          format: email
+          description: Users email from contact form
+        subject:
+          type: string
+          description: Message subject
+        message:
+          type: string
+          description: Actual message from user
+      required:
+        - name
+        - email
+        - subject
+        - message
+
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP response code
+        message:
+          type: string
+          description: Human readable error message
+
+  responses:
+    BadRequest:
+      description: Request was invalid or malformed
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GeneralError"
+          example:
+            code: 400
+            message: Request body contained invalid property
+
+    TooManyRequests:
+      description: The rate limit has been exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: |
+            Number of seconds until the client should retry the request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GeneralError"
+          example:
+            code: 429
+            message: Too many requests
+
+    ServerError:
+      description: An unexpected server error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GeneralError"
+          example:
+            code: 500
+            message: Unexpected error
+
+
+tags:
+  - name: communication
+    description: |
+      Communication channels between Sidings Media and the User
+
+
+paths:
+  /contact:
+    post:
+      description: Send a message to Sidings Media
+      tags:
+        - communication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Message"
+      responses:
+        204:
+          description: Created
+
+        400:
+          $ref: "#/components/responses/BadRequest"
+
+        429:
+          $ref: "#/components/responses/TooManyRequests"
+
+        5XX:
+          $ref: "#/components/responses/ServerError"
