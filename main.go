@@ -6,6 +6,7 @@ package main
 import (
 	"log"
 
+	"api.sidingsmedia.com/responses"
 	"api.sidingsmedia.com/routes"
 	"api.sidingsmedia.com/util"
 	"github.com/gin-contrib/cors"
@@ -32,9 +33,16 @@ func init() {
 
 func main() {
   router := gin.Default()
+  router.NoRoute(func(c *gin.Context) {
+    responses.Send404(c)
+  })
+
+  log.Println("Registering middlewares")
   router.Use(cors.Default())
 
+  log.Println("Registering routes")
   routes.RegisterCommunications(router)
 
+  log.Printf("Starting server on %s\n", util.BindAddr)
   router.Run(util.BindAddr)
 }

@@ -10,6 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Send the standard response for a HTTP 400 Bad Request error
 func Send400(c *gin.Context) {
   c.JSON(
     http.StatusBadRequest,
@@ -20,6 +21,18 @@ func Send400(c *gin.Context) {
   )
 }
 
+// Send the standard response for a HTTP 404 Not Found error
+func Send404(c *gin.Context) {
+  c.JSON(
+    http.StatusNotFound,
+    models.GeneralError{
+      Code: http.StatusNotFound,
+      Message: "Requested resource could not be located. Please double check your request.",
+    },
+  )
+}
+
+// Send the standard response for a HTTP 500 Internal Server Error error
 func Send500(c *gin.Context) {
   c.JSON(
     http.StatusInternalServerError,
