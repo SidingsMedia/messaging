@@ -16,7 +16,7 @@ type MessagingService interface {
 }
 
 type messagingService struct {
-    smtpServer gomail.SendCloser
+    smtpServer *gomail.Dialer
 }
 
 func (service *messagingService) SendEmail(message *model.Message) error {
@@ -32,10 +32,10 @@ func (service *messagingService) SendEmail(message *model.Message) error {
 		)
 		m.SetBody("text/plain", body)
 
-        return gomail.Send(service.smtpServer, m)
+        return service.smtpServer.DialAndSend(m)
 }
 
-func NewMessagingService(smtpServer gomail.SendCloser) MessagingService {
+func NewMessagingService(smtpServer *gomail.Dialer) MessagingService {
     return &messagingService{
         smtpServer: smtpServer,
     }

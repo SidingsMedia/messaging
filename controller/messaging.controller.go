@@ -5,6 +5,7 @@ package controller
 
 import (
 	"errors"
+	"log"
 	"net/http"
 
 	"github.com/SidingsMedia/api.sidingsmedia.com/model"
@@ -36,7 +37,8 @@ func (controller messagingController) SendEmail(ctx *gin.Context) {
     }
 
 	if err := controller.service.SendEmail(request); err != nil {
-		ctx.AbortWithStatusJSON(http.StatusNotAcceptable, model.GeneralError{
+        log.Println(err)
+		ctx.AbortWithStatusJSON(http.StatusInternalServerError, model.GeneralError{
             Code: http.StatusInternalServerError,
             Message: "An unexpected error occured",
         })

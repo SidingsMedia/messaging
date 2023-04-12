@@ -43,16 +43,12 @@ func init() {
 }
 
 func main() {
-    smtpServer, err := InitialiseSMTP(&SMTPConfig{
+    smtpServer := InitialiseSMTP(&SMTPConfig{
         Host: util.SMTPAddr,
         Port: util.SMTPPort,
         User: util.SMTPUsr,
         Password: util.SMTPPwd,
     })
-
-    if err != nil {
-        log.Fatalf("Failed to connect to SMTP server. %s\n", err)
-    }
 
     messagingService := service.NewMessagingService(smtpServer)
 
@@ -78,20 +74,13 @@ func main() {
 	engine.Run(util.BindAddr)
 }
 
-func InitialiseSMTP(config *SMTPConfig) (gomail.SendCloser, error) {
-    var s gomail.SendCloser
-    var err error
-
+func InitialiseSMTP(config *SMTPConfig) *gomail.Dialer {
     d := gomail.NewDialer(
         config.Host, config.Port,
         config.User, config.Password,
     )
 
-    if s, err = d.Dial(); err != nil {
-        return nil, err
-    }
-
-    return s, nil
+    return d
 }
 
 type SMTPConfig struct {
