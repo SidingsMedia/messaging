@@ -7,12 +7,13 @@ import (
 	"log"
 	"strings"
 
-	"api.sidingsmedia.com/responses"
-	"api.sidingsmedia.com/routes"
-	"api.sidingsmedia.com/util"
+	"github.com/SidingsMedia/api.sidingsmedia.com/controller"
+	"github.com/SidingsMedia/api.sidingsmedia.com/service"
+	"github.com/SidingsMedia/api.sidingsmedia.com/util"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"gopkg.in/gomail.v2"
 )
 
 func init() {
@@ -42,28 +43,60 @@ func init() {
 }
 
 func main() {
-	router := gin.Default()
+    smtpServer, err := InitialiseSMTP(&SMTPConfig{
+        Host: util.SMTPAddr,
+        Port: util.SMTPPort,
+        User: util.SMTPUsr,
+        Password: util.SMTPPwd,
+    })
+
+    if err != nil {
+        log.Fatalf("Failed to connect to SMTP server. %s\n", err)
+    }
+
+    messagingService := service.NewMessagingService(smtpServer)
+
+	engine := gin.Default()
+    engine.Use(cors.Default())
+    // Set our custom 404 handler
+	// engine.NoRoute(func(c *gin.Context) {
+	// 	responses.Send404(c)
+	// })
+
+    controller.NewMessagingController(engine, messagingService)
 
 	// Set trusted proxies. If user has set it to * then we can just
 	// ignore it as GIN trusts all by default
 	if util.TrustedProxies[0] != "*" {
-		if err := router.SetTrustedProxies(util.TrustedProxies); err != nil {
+		if err := engine.SetTrustedProxies(util.TrustedProxies); err != nil {
 			log.Fatalf("Failed to set trusted proxies. %s", err)
 		}
 		log.Printf("Trusting the following proxies: %s", util.TrustedProxies)
 	}
 
-	// Set our custom 404 handler
-	router.NoRoute(func(c *gin.Context) {
-		responses.Send404(c)
-	})
-
-	log.Println("Registering middlewares")
-	router.Use(cors.Default())
-
-	log.Println("Registering routes")
-	routes.MessagingRoutes(router)
-
 	log.Printf("Starting server on %s\n", util.BindAddr)
-	router.Run(util.BindAddr)
+	engine.Run(util.BindAddr)
+}
+
+func InitialiseSMTP(config *SMTPConfig) (gomail.SendCloser, error) {
+    var s gomail.SendCloser
+    var err error
+
+    d := gomail.NewDialer(
+        config.Host, config.Port,
+        config.User, config.Password,
+    )
+
+    if s, err = d.Dial(); err != nil {
+        return nil, err
+    }
+
+    return s, nil
+}
+
+type SMTPConfig struct {
+	Host  string
+	Port     int
+	User     string
+	Password string
 }

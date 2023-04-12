@@ -1,4 +1,4 @@
-module api.sidingsmedia.com
+module github.com/SidingsMedia/api.sidingsmedia.com
 
 go 1.19
 
