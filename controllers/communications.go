@@ -61,7 +61,13 @@ func SendEmail() gin.HandlerFunc {
     m.SetHeader("Reply-To", message.Email)
     m.SetHeader("To", configs.ToAddr)
     m.SetHeader("Subject", message.Subject)
-    body := fmt.Sprintf("From: %s\n\nMessage:\n\n%s", message.Name, message.Message)
+    origin := c.GetHeader("Origin")
+    body := fmt.Sprintf(
+      "From: %s\nOrigin: %s\n\nMessage:\n\n%s",
+      message.Name,
+      origin,
+      message.Message,
+    )
     m.SetBody("text/plain", body)
 
     d := gomail.NewDialer(
