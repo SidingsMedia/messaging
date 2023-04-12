@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/http"
 
-	"api.sidingsmedia.com/configs"
 	"api.sidingsmedia.com/models"
 	"api.sidingsmedia.com/responses"
 	"api.sidingsmedia.com/util"
@@ -57,9 +56,9 @@ func SendEmail() gin.HandlerFunc {
     }
 
     m := gomail.NewMessage()
-    m.SetHeader("From", configs.FromAddr)
+    m.SetHeader("From", util.EmailFrom)
     m.SetHeader("Reply-To", message.Email)
-    m.SetHeader("To", configs.ToAddr)
+    m.SetHeader("To", util.EmailTo)
     m.SetHeader("Subject", message.Subject)
     origin := c.GetHeader("Origin")
     body := fmt.Sprintf(
@@ -71,16 +70,15 @@ func SendEmail() gin.HandlerFunc {
     m.SetBody("text/plain", body)
 
     d := gomail.NewDialer(
-      configs.SMTPServer,
-      configs.SMTPPort,
-      configs.SMTPUser,
-      configs.SMTPPassword,
+      util.SMTPAddr,
+      util.SMTPPort,
+      util.SMTPUsr,
+      util.SMTPPwd,
     )
 
     // Send the email
     if err := d.DialAndSend(m); err != nil {
-      log.Println(err)
-      log.Println(configs.SMTPPassword)
+        log.Println(err)
         c.JSON(
           http.StatusInternalServerError,
           responses.GeneralError{
