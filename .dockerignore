@@ -8,9 +8,7 @@
 !go.sum
 !go.mod
 !main.go
-!configs/
-!controllers/
-!models/
-!responses/
-!routes/
+!controller/
+!model/
+!service/
 !util/
