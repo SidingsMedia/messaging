@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 Sidinggs Media
+// SPDX-FileCopyrightText: 2023 Sidings Media
 // SPDX-License-Identifier: MIT
 
 package util
