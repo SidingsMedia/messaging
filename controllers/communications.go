@@ -6,7 +6,6 @@ package controllers
 import (
 	"fmt"
 	"log"
-	"net/http"
 
 	"api.sidingsmedia.com/models"
 	"api.sidingsmedia.com/responses"
@@ -23,35 +22,17 @@ func SendEmail() gin.HandlerFunc {
     var message  models.Message
 
     if err := c.BindJSON(&message); err != nil {
-      c.JSON(
-        http.StatusBadRequest,
-        responses.GeneralError{
-          Code: http.StatusBadRequest,
-          Message: "Request body was invalid",
-        },
-      )
+      responses.Send400(c)
       return
     }
 
     if err := validate.Struct(&message); err != nil {
-      c.JSON(
-        http.StatusBadRequest,
-        responses.GeneralError{
-          Code: http.StatusBadRequest,
-          Message: "Request body was invalid",
-        },
-      )
+      responses.Send400(c)
       return
     }
 
     if !util.IsValidEmail(message.Email) {
-      c.JSON(
-        http.StatusBadRequest,
-        responses.GeneralError{
-          Code: http.StatusBadRequest,
-          Message: "Request body was invalid",
-        },
-      )
+      responses.Send400(c)
       return
     }
 
@@ -79,13 +60,7 @@ func SendEmail() gin.HandlerFunc {
     // Send the email
     if err := d.DialAndSend(m); err != nil {
         log.Println(err)
-        c.JSON(
-          http.StatusInternalServerError,
-          responses.GeneralError{
-            Code: http.StatusInternalServerError,
-            Message: "Failed to send email due to unexpected error",
-          },
-        )
+        responses.Send500(c)
         return
     }
   }
