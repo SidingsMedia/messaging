@@ -8,6 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterCommunications(router *gin.Engine) {
-	router.POST("contact", controllers.SendEmail())
+func MessagingRoutes(router *gin.Engine) {
+	router.POST("messaging/contact", controllers.SendEmail())
 }

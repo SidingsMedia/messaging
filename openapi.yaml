@@ -6,7 +6,7 @@ info:
   title: Sidings Media API
   description: |
       General utility APIs for all Sidings Media web based services
-  version: 0.1.1
+  version: 0.1.2
 
 
 servers:
@@ -92,17 +92,17 @@ components:
 
 
 tags:
-  - name: communication
+  - name: messaging
     description: |
       Communication channels between Sidings Media and the User
 
 
 paths:
-  /contact:
+  /messaging/contact:
     post:
       description: Send a message to Sidings Media
       tags:
-        - communication
+        - messaging
       requestBody:
         required: true
         content:

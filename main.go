@@ -62,7 +62,7 @@ func main() {
 	router.Use(cors.Default())
 
 	log.Println("Registering routes")
-	routes.RegisterCommunications(router)
+	routes.MessagingRoutes(router)
 
 	log.Printf("Starting server on %s\n", util.BindAddr)
 	router.Run(util.BindAddr)
