@@ -3,6 +3,7 @@
 
 package models
 
+// Message recieved from the contact form
 type Message struct {
 	Name    string `json:"name" validate:"required"`
 	Email   string `json:"email" validate:"required"`

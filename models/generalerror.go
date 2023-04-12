@@ -3,6 +3,7 @@
 
 package models
 
+// Standardised error response schema
 type GeneralError struct {
 	Code    int    `json:"code"`
 	Message string `json:"message"`

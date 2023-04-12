@@ -17,6 +17,9 @@ import (
 
 var validate = validator.New()
 
+// Endpoint handler to send email. Sends an email using the configured
+// SMTP server to the configured EmailTo address from the EmailFrom
+// address.
 func SendEmail() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var message models.Message
@@ -41,6 +44,8 @@ func SendEmail() gin.HandlerFunc {
 		m.SetHeader("Reply-To", message.Email)
 		m.SetHeader("To", util.EmailTo)
 		m.SetHeader("Subject", message.Subject)
+        // TODO: Use templates for message body instead of simple
+        // formatting.
 		origin := c.GetHeader("Origin")
 		body := fmt.Sprintf(
 			"From: %s\nOrigin: %s\n\nMessage:\n\n%s",
