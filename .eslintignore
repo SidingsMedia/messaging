@@ -1,6 +1,0 @@
-# SPDX-FileCopyrightText: 2015-2022 Strapi Solutions SAS
-# SPDX-License-Identifier: MIT
-
-.cache
-build
-**/node_modules/**

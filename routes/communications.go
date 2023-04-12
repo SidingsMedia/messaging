@@ -9,5 +9,5 @@ import (
 )
 
 func RegisterCommunications(router *gin.Engine) {
-  router.POST("contact", controllers.SendEmail())
+	router.POST("contact", controllers.SendEmail())
 }
