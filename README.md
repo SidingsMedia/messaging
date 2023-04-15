@@ -79,6 +79,16 @@ To add the environment variables, you can use multiple `-e` flags. For
 more information see the [docker
 documentation](https://docs.docker.com/engine/reference/commandline/run/#env).
 
+### Docker Compose
+
+A docker compose file is also provided if you would like to use it.
+
+```
+docker compose up . -d
+```
+
+To pass the environment variables, just store them in a .env file.
+
 ## Licence
 This repo uses the [REUSE](https://reuse.software) standard in order to
 communicate the correct licence for the file. For those unfamiliar with
