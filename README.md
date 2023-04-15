@@ -52,7 +52,7 @@ variables.
 
 | Name              | Required           | Description                                                                                                         | Example                                       |
 |-------------------|--------------------|---------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| `BIND_ADDR`       | :heavy_check_mark: | This is the address to bind the server to                                                                           | `[::1]:3000`                                  |
+| `BIND_ADDR`       | :x:                | This is the address to bind the server to. Defaults to `[::1]:3000`.                                                | `[::]:3000`                                  |
 | `TRUSTED_PROXIES` | :x:                | Proxy servers to trust when reading client IP headers. Provide addresses in a comma separated list.Defaults to `*`. | `192.0.2.1,192.0.2.2,2001:db8::1,2001:db8::2` |
 | `GIN_MODE`        | :x:                | Mode to run Gin in. Only set to `debug` for development. Defaults to `release`.                                     | `release`                                     |
 | `EMAIL_TO`        | :heavy_check_mark: | Email to send submissions to contact form to.                                                                       | `contact@example.com`                         |
