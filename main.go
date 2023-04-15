@@ -54,10 +54,6 @@ func main() {
 
 	engine := gin.Default()
     engine.Use(cors.Default())
-    // Set our custom 404 handler
-	// engine.NoRoute(func(c *gin.Context) {
-	// 	responses.Send404(c)
-	// })
 
     controller.NewMessagingController(engine, messagingService)
 
