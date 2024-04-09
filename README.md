@@ -1,5 +1,5 @@
 <!-- 
-SPDX-FileCopyrightText: 2022-2023 Sidings Media <contact@sidingsmedia.com>
+SPDX-FileCopyrightText: 2022-2024 Sidings Media <contact@sidingsmedia.com>
 SPDX-License-Identifier: MIT
 -->
 
@@ -14,7 +14,7 @@ Media's public API
 
 This project is written in go so you will need this to be installed.
 
-First download the project dependancies.
+First download the project dependencies.
 
 ```
 go mod download
@@ -38,7 +38,7 @@ docker build . -t messaging:latest
 Note: `-t messaging` gives the container the name messaging and the tag
 latest.
 
-Docker will now download all the dependancies and then build your
+Docker will now download all the dependencies and then build your
 container. This may take a while.
 
 ## Running
@@ -50,17 +50,16 @@ correctly. An example `.env` file can be found in the document root
 (`.env.example`). Below is a complete table of all environment
 variables.
 
-| Name              | Required           | Description                                                                                                         | Example                                       |
-|-------------------|--------------------|---------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| `BIND_ADDR`       | :x:                | This is the address to bind the server to. Defaults to `[::1]:3000`.                                                | `[::]:3000`                                  |
-| `TRUSTED_PROXIES` | :x:                | Proxy servers to trust when reading client IP headers. Provide addresses in a comma separated list.Defaults to `*`. | `192.0.2.1,192.0.2.2,2001:db8::1,2001:db8::2` |
-| `GIN_MODE`        | :x:                | Mode to run Gin in. Only set to `debug` for development. Defaults to `release`.                                     | `release`                                     |
-| `EMAIL_TO`        | :heavy_check_mark: | Email to send submissions to contact form to.                                                                       | `contact@example.com`                         |
-| `EMAIL_FROM`      | :heavy_check_mark: | Email to send submissions to contact form from.                                                                     | `contact@example.com`                         |
-| `SMTP_ADDRESS`    | :heavy_check_mark: | Address or name of SMTP server to use for sending contact form submissions.                                         | `mail.example.com`                            |
-| `SMTP_PORT`       | :heavy_check_mark: | Port to use for SMTP submissions.                                                                                   | `587`                                         |
-| `SMTP_USER`       | :heavy_check_mark: | Username to use when authenticating with SMTP server.                                                               | `contact@example.com`                         |
-| `SMTP_PASSWORD`   | :heavy_check_mark: | Password to authenticate with.                                                                                      |                                               |
+| Name                        | Required           | Description                                                                                                         | Example                                        |
+|-----------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| `BIND_ADDR`                 | :x:                | This is the address to bind the server to. Defaults to `[::1]:3000`.                                                | `[::]:3000`                                    |
+| `TRUSTED_PROXIES`           | :x:                | Proxy servers to trust when reading client IP headers. Provide addresses in a comma separated list.Defaults to `*`. | `192.0.2.1,192.0.2.2,2001:db8::1,2001:db8::2`  |
+| `GIN_MODE`                  | :x:                | Mode to run Gin in. Only set to `debug` for development. Defaults to `release`.                                     | `release`                                      |
+| `TICKET_API_URL`            | :heavy_check_mark: | URL of endpoint to call when submitting a ticket.                                                                   | `https://tickets.example.com/api/tickets.json` |
+| `TICKET_API_KEY`            | :heavy_check_mark: | API key to pass in `X-API-Key` header to server.                                                                    |                                                |
+| `TICKET_SHOULD_ALERT`       | :x:                | Should an alert be sent by ticketing system to agents? Defaults to `true`.                                          |                                                |
+| `TICKET_SHOULD_AUTORESPOND` | :x:                | Should an autoresponse email be sent to the user? Defaults to `true`.                                               |                                                |
+| `TICKET_SOURCE`             | :x:                | Source of message to show in ticketing system. Defaults to `API`.                                                   | `API`                                          |
 
 ### Binary
 
