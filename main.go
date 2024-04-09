@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 Sidings Media
+// SPDX-FileCopyrightText: 2023-2024 Sidings Media
 // SPDX-License-Identifier: MIT
 
 package main
@@ -7,13 +7,12 @@ import (
 	"log"
 	"strings"
 
-	"github.com/SidingsMedia/api.sidingsmedia.com/controller"
-	"github.com/SidingsMedia/api.sidingsmedia.com/service"
-	"github.com/SidingsMedia/api.sidingsmedia.com/util"
+	"github.com/SidingsMedia/messaging/controller"
+	"github.com/SidingsMedia/messaging/service"
+	"github.com/SidingsMedia/messaging/util"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"gopkg.in/gomail.v2"
 )
 
 func init() {
@@ -33,24 +32,16 @@ func init() {
 		",",
 	)
 
-	// Email settings
-	util.EmailFrom = util.Mustgetenv(util.EmailFromEnv)
-	util.EmailTo = util.Mustgetenv(util.EmailToEnv)
-	util.SMTPAddr = util.Mustgetenv(util.SMTPAddrEnv)
-	util.SMTPPort = util.IGetenv(util.SMTPPortEnv, util.DefaultSMTPPort)
-	util.SMTPUsr = util.Mustgetenv(util.SMTPUsrEnv)
-	util.SMTPPwd = util.Mustgetenv(util.SMTPPwdEnv)
+    // Ticket server settings
+    util.TicketAPIURL = util.Mustgetenv(util.TicketAPIURLEnv)
+    util.TicketAPIKey = util.Mustgetenv(util.TicketAPIKeyEnv)
+    util.TicketShouldAlert = util.BGetenv(util.TicketShouldAlertEnv, util.DefaultTicketShouldAlert)
+    util.TicketShouldAutorespond = util.BGetenv(util.TicketShouldAutorespondEnv, util.DefaultTicketShouldAutorespond)
+    util.TicketSource = util.SGetenv(util.TicketSourceEnv, util.DefaultTicketSource)
 }
 
 func main() {
-    smtpServer := InitialiseSMTP(&SMTPConfig{
-        Host: util.SMTPAddr,
-        Port: util.SMTPPort,
-        User: util.SMTPUsr,
-        Password: util.SMTPPwd,
-    })
-
-    messagingService := service.NewMessagingService(smtpServer)
+    messagingService := service.NewMessagingService()
 
 	engine := gin.Default()
     engine.Use(cors.Default())
@@ -68,20 +59,4 @@ func main() {
 
 	log.Printf("Starting server on %s\n", util.BindAddr)
 	engine.Run(util.BindAddr)
-}
-
-func InitialiseSMTP(config *SMTPConfig) *gomail.Dialer {
-    d := gomail.NewDialer(
-        config.Host, config.Port,
-        config.User, config.Password,
-    )
-
-    return d
-}
-
-type SMTPConfig struct {
-	Host  string
-	Port     int
-	User     string
-	Password string
 }

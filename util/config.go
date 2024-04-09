@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 Sidings Media
+// SPDX-FileCopyrightText: 2023-2024 Sidings Media
 // SPDX-License-Identifier: MIT
 
 package util
@@ -9,35 +9,34 @@ var (
 	BindAddr string
 	// Proxies from which to trust alternative client IP headers
 	TrustedProxies []string
-	// Email to send messages from
-	EmailFrom string
-	// Email to send messages to
-	EmailTo string
-	// Address or hostname of SMTP server
-	SMTPAddr string
-	// Port to submit mail on
-	SMTPPort int
-	// User to log into SMTP server with
-	SMTPUsr string
-	// Password to use to authenticate with SMTP server
-	SMTPPwd string
+	// URL for ticketing system API
+	TicketAPIURL string
+	// API key for ticketing system
+	TicketAPIKey string
+	// Should the ticketing system alert on a new message?
+	TicketShouldAlert bool
+	// Should the ticketing system auto respond on a new message?
+	TicketShouldAutorespond bool
+	// Source for messages
+	TicketSource string
 )
 
 // Environment variables
 const (
-	BindAddrEnv       = "BIND_ADDRESS"
-	TrustedProxiesEnv = "TRUSTED_PROXIES"
-	EmailFromEnv      = "EMAIL_FROM"
-	EmailToEnv        = "EMAIL_TO"
-	SMTPAddrEnv       = "SMTP_ADDRESS"
-	SMTPPortEnv       = "SMTP_PORT"
-	SMTPUsrEnv        = "SMTP_USER"
-	SMTPPwdEnv        = "SMTP_PASSWORD"
+	BindAddrEnv                = "BIND_ADDRESS"
+	TrustedProxiesEnv          = "TRUSTED_PROXIES"
+	TicketAPIURLEnv            = "TICKET_API_URL"
+	TicketAPIKeyEnv            = "TICKET_API_KEY"
+	TicketShouldAlertEnv       = "TICKET_SHOULD_ALERT"
+	TicketShouldAutorespondEnv = "TICKET_SHOULD_AUTORESPOND"
+	TicketSourceEnv            = "TICKET_SOURCE"
 )
 
 // Defaults
 const (
-	DefaultBindAddr       = "[::]:3000"
-	DefaultTrustedProxies = "*"
-	DefaultSMTPPort       = 587
+	DefaultBindAddr                = "[::]:3000"
+	DefaultTrustedProxies          = "*"
+	DefaultTicketShouldAlert       = true
+	DefaultTicketShouldAutorespond = true
+	DefaultTicketSource            = "API"
 )

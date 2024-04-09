@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 Sidings Media
+// SPDX-FileCopyrightText: 2023-2024 Sidings Media
 // SPDX-License-Identifier: MIT
 
 package util
@@ -36,6 +36,23 @@ func IGetenv(key string, fallback int) int {
 			return res
 		}
 	}
+}
+
+// Get the specified environment variable as an boolean. If is doesn't
+// exist or cannot be converted to a bool, return the fallback instead.
+func BGetenv(key string, fallback bool) bool {
+    val := os.Getenv(key)
+
+    if len(val) == 0 {
+        return fallback
+    } else {
+        res, err := strconv.ParseBool(val)
+        if err != nil {
+            return fallback
+        } else {
+            return res
+        }
+    }
 }
 
 // Attempt to get the environment variable. If it is not set, log error

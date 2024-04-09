@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 Sidings Media
+// SPDX-FileCopyrightText: 2023-2024 Sidings Media
 // SPDX-License-Identifier: MIT
 
 package controller
@@ -8,9 +8,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/SidingsMedia/api.sidingsmedia.com/model"
-	"github.com/SidingsMedia/api.sidingsmedia.com/service"
-	"github.com/SidingsMedia/api.sidingsmedia.com/util"
+	"github.com/SidingsMedia/messaging/model"
+	"github.com/SidingsMedia/messaging/service"
+	"github.com/SidingsMedia/messaging/util"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 )
@@ -23,7 +23,7 @@ type messagingController struct {
 	service service.MessagingService
 }
 
-func (controller messagingController) SendEmail(ctx *gin.Context) {
+func (controller messagingController) SendMessage(ctx *gin.Context) {
 	request := &model.Message{}
 	if err := ctx.ShouldBind(request); err != nil && errors.As(err, &validator.ValidationErrors{}){
 		util.SendBadRequestFieldNames(ctx, err.(validator.ValidationErrors))
@@ -36,7 +36,7 @@ func (controller messagingController) SendEmail(ctx *gin.Context) {
         return
     }
 
-	if err := controller.service.SendEmail(request); err != nil {
+	if err := controller.service.SendMessage(request); err != nil {
         log.Println(err)
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, model.GeneralError{
             Code: http.StatusInternalServerError,
@@ -51,6 +51,6 @@ func NewMessagingController(engine *gin.Engine, messagingService service.Messagi
     }
     api := engine.Group("messaging")
     {
-        api.POST("contact", controller.SendEmail)
+        api.POST("contact", controller.SendMessage)
     }
 }

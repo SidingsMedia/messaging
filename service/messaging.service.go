@@ -1,42 +1,66 @@
-// SPDX-FileCopyrightText: 2023 Sidings Media
+// SPDX-FileCopyrightText: 2023-2024 Sidings Media
 // SPDX-License-Identifier: MIT
 
 package service
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
+	"net/http"
 
-	"github.com/SidingsMedia/api.sidingsmedia.com/model"
-	"github.com/SidingsMedia/api.sidingsmedia.com/util"
-	"gopkg.in/gomail.v2"
+	"github.com/SidingsMedia/messaging/domain"
+	"github.com/SidingsMedia/messaging/model"
+	"github.com/SidingsMedia/messaging/util"
 )
 
 type MessagingService interface {
-    SendEmail(message *model.Message) error
+    SendMessage(message *model.Message) error
 }
 
 type messagingService struct {
-    smtpServer *gomail.Dialer
 }
 
-func (service *messagingService) SendEmail(message *model.Message) error {
-        m := gomail.NewMessage()
-		m.SetHeader("From", util.EmailFrom)
-		m.SetHeader("Reply-To", message.Email)
-		m.SetHeader("To", util.EmailTo)
-		m.SetHeader("Subject", message.Subject)
-		body := fmt.Sprintf(
-			"From: %s\n\nMessage:\n\n%s",
-			message.Name,
-			message.Message,
-		)
-		m.SetBody("text/plain", body)
+func (service *messagingService) SendMessage(message *model.Message) error {
+        body := domain.Message{
+			Alert: util.TicketShouldAlert,
+            Autorespond: util.TicketShouldAutorespond,
+            Source: util.TicketSource,
+            Name: message.Name,
+            Email: message.Email,
+            Subject: message.Subject,
+            Message: message.Message,
+        }
 
-        return service.smtpServer.DialAndSend(m)
+        payload, err := json.Marshal(body)
+		if err != nil {
+			return err
+		}
+
+        req, err := http.NewRequest("POST", util.TicketAPIURL, bytes.NewBuffer(payload))
+        if err != nil {
+            return err
+        }
+
+        req.Header.Set("Content-Type", "application/json")
+        req.Header.Set("X-API-Key", util.TicketAPIKey)
+
+        client := &http.Client{}
+        resp, err := client.Do(req)
+        if err != nil {
+            return err
+        }
+        defer resp.Body.Close()
+
+        if resp.StatusCode != http.StatusCreated {
+            body, _ := io.ReadAll(resp.Body)
+            return fmt.Errorf("got bad response from API: %d %s", resp.StatusCode, string(body))
+        }
+        return nil
 }
 
-func NewMessagingService(smtpServer *gomail.Dialer) MessagingService {
+func NewMessagingService() MessagingService {
     return &messagingService{
-        smtpServer: smtpServer,
     }
 }
