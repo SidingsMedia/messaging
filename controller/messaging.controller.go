@@ -40,7 +40,7 @@ func (controller messagingController) SendMessage(ctx *gin.Context) {
         log.Println(err)
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, model.GeneralError{
             Code: http.StatusInternalServerError,
-            Message: "An unexpected error occured",
+            Message: "An unexpected error occurred",
         })
 	}
 }
