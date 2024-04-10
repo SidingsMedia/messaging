@@ -42,7 +42,9 @@ func (controller messagingController) SendMessage(ctx *gin.Context) {
             Code: http.StatusInternalServerError,
             Message: "An unexpected error occured",
         })
+        return
 	}
+    ctx.Status(http.StatusCreated)
 }
 
 func NewMessagingController(engine *gin.Engine, messagingService service.MessagingService) {
