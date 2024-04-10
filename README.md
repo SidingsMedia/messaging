@@ -56,6 +56,7 @@ variables.
 | `TRUSTED_PROXIES`           | :x:                | Proxy servers to trust when reading client IP headers. Provide addresses in a comma separated list.Defaults to `*`. | `192.0.2.1,192.0.2.2,2001:db8::1,2001:db8::2`  |
 | `GIN_MODE`                  | :x:                | Mode to run Gin in. Only set to `debug` for development. Defaults to `release`.                                     | `release`                                      |
 | `TICKET_API_URL`            | :heavy_check_mark: | URL of endpoint to call when submitting a ticket.                                                                   | `https://tickets.example.com/api/tickets.json` |
+| `TICKET_HEALTH_URL`         | :heavy_check_mark: | URL of endpoint to call for health checks on the ticketing system.                                                  | `https://tickets.example.com`                  |
 | `TICKET_API_KEY`            | :heavy_check_mark: | API key to pass in `X-API-Key` header to server.                                                                    |                                                |
 | `TICKET_SHOULD_ALERT`       | :x:                | Should an alert be sent by ticketing system to agents? Defaults to `true`.                                          |                                                |
 | `TICKET_SHOULD_AUTORESPOND` | :x:                | Should an autoresponse email be sent to the user? Defaults to `true`.                                               |                                                |
