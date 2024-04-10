@@ -17,6 +17,7 @@ import (
 
 type MessagingService interface {
     SendMessage(message *model.Message) error
+    HealthCheck() error
 }
 
 type messagingService struct {
@@ -58,6 +59,21 @@ func (service *messagingService) SendMessage(message *model.Message) error {
             return fmt.Errorf("got bad response from API: %d %s", resp.StatusCode, string(body))
         }
         return nil
+}
+
+func (service *messagingService) HealthCheck() error {
+    resp, err := http.Get(util.TicketHealthURL)
+    if err != nil {
+        return err
+    }
+
+    defer resp.Body.Close()
+
+    if resp.StatusCode != http.StatusOK {
+        body, _ := io.ReadAll(resp.Body)
+        return fmt.Errorf("got bad response from health check: %d %s", resp.StatusCode, string(body))
+    }
+    return nil
 }
 
 func NewMessagingService() MessagingService {

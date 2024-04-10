@@ -17,6 +17,7 @@ import (
 
 type MessagingController interface {
 	Contact(ctx *gin.Context)
+    HealthCheck(ctx *gin.Context)
 }
 
 type messagingController struct {
@@ -45,6 +46,15 @@ func (controller messagingController) SendMessage(ctx *gin.Context) {
 	}
 }
 
+func (controller messagingController) HealthCheck(ctx *gin.Context) {
+    if err := controller.service.HealthCheck(); err != nil {
+        ctx.String(http.StatusServiceUnavailable, "unhealthy")
+        ctx.Abort()
+        return
+    }
+    ctx.String(http.StatusOK, "healthy")
+}
+
 func NewMessagingController(engine *gin.Engine, messagingService service.MessagingService) {
     controller := &messagingController{
         service: messagingService,
@@ -52,5 +62,6 @@ func NewMessagingController(engine *gin.Engine, messagingService service.Messagi
     api := engine.Group("messaging")
     {
         api.POST("contact", controller.SendMessage)
+        api.GET("health", controller.HealthCheck)
     }
 }

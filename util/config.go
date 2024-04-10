@@ -11,6 +11,8 @@ var (
 	TrustedProxies []string
 	// URL for ticketing system API
 	TicketAPIURL string
+    // URL to use for ticketing system health checks
+    TicketHealthURL string
 	// API key for ticketing system
 	TicketAPIKey string
 	// Should the ticketing system alert on a new message?
@@ -26,6 +28,7 @@ const (
 	BindAddrEnv                = "BIND_ADDRESS"
 	TrustedProxiesEnv          = "TRUSTED_PROXIES"
 	TicketAPIURLEnv            = "TICKET_API_URL"
+    TicketHealthURLEnv         = "TICKET_HEALTH_URL"
 	TicketAPIKeyEnv            = "TICKET_API_KEY"
 	TicketShouldAlertEnv       = "TICKET_SHOULD_ALERT"
 	TicketShouldAutorespondEnv = "TICKET_SHOULD_AUTORESPOND"
