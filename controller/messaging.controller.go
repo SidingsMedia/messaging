@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023-2024 Sidings Media
+// SPDX-FileCopyrightText: 2023-2025 Sidings Media
 // SPDX-License-Identifier: MIT
 
 package controller
@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 
+	internalerrors "github.com/SidingsMedia/messaging/errors"
 	"github.com/SidingsMedia/messaging/model"
 	"github.com/SidingsMedia/messaging/service"
 	"github.com/SidingsMedia/messaging/util"
@@ -38,6 +39,15 @@ func (controller messagingController) SendMessage(ctx *gin.Context) {
     }
 
 	if err := controller.service.SendMessage(request); err != nil {
+        var e *internalerrors.NameLengthError
+        if (errors.As(err, &e)) {
+            ctx.AbortWithStatusJSON(http.StatusBadRequest, model.GeneralError{
+                Code: http.StatusBadRequest,
+                Message: err.Error(),
+            })
+            return
+        }
+
         log.Println(err)
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, model.GeneralError{
             Code: http.StatusInternalServerError,
