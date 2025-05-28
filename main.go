@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023-2024 Sidings Media
+// SPDX-FileCopyrightText: 2023-2025 Sidings Media
 // SPDX-License-Identifier: MIT
 
 package main
@@ -33,12 +33,10 @@ func init() {
 	)
 
     // Ticket server settings
-    util.TicketAPIURL = util.Mustgetenv(util.TicketAPIURLEnv)
-    util.TicketHealthURL = util.Mustgetenv(util.TicketHealthURLEnv)
-    util.TicketAPIKey = util.Mustgetenv(util.TicketAPIKeyEnv)
-    util.TicketShouldAlert = util.BGetenv(util.TicketShouldAlertEnv, util.DefaultTicketShouldAlert)
-    util.TicketShouldAutorespond = util.BGetenv(util.TicketShouldAutorespondEnv, util.DefaultTicketShouldAutorespond)
-    util.TicketSource = util.SGetenv(util.TicketSourceEnv, util.DefaultTicketSource)
+    util.TicketAPIURL = util.SMustgetenv(util.TicketAPIURLEnv)
+    util.TicketHealthURL = util.SMustgetenv(util.TicketHealthURLEnv)
+    util.TicketAPIKey = util.SMustgetenv(util.TicketAPIKeyEnv)
+    util.TicketMailboxId = util.IMustGetEnv(util.TicketMailboxIdEnv)
 }
 
 func main() {

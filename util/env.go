@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023-2024 Sidings Media
+// SPDX-FileCopyrightText: 2023-2025 Sidings Media
 // SPDX-License-Identifier: MIT
 
 package util
@@ -57,11 +57,21 @@ func BGetenv(key string, fallback bool) bool {
 
 // Attempt to get the environment variable. If it is not set, log error
 // and exit
-func Mustgetenv(key string) string {
+func SMustgetenv(key string) string {
 	val := os.Getenv(key)
 
 	if len(val) == 0 {
-		log.Fatalln("Failed to get", key, ". Environment variable not set")
+		log.Fatalf("Failed to get %s. Environment variable not set\n", key)
 	}
 	return val
+}
+
+func IMustGetEnv(key string) int {
+    val := SMustgetenv(key)
+
+    res, err := strconv.Atoi(val)
+    if err != nil {
+        log.Fatalf("Failed to convert %s to an integer. %s\n", val, err.Error())
+    }
+    return res
 }

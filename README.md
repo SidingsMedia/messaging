@@ -1,12 +1,14 @@
 <!-- 
-SPDX-FileCopyrightText: 2022-2024 Sidings Media <contact@sidingsmedia.com>
+SPDX-FileCopyrightText: 2022-2025 Sidings Media <contact@sidingsmedia.com>
 SPDX-License-Identifier: MIT
 -->
 
 # Messaging
 
 This repo contains the source for the messaging service, part of Sidings
-Media's public API
+Media's public API. The messaging service is built on top of
+[FreeScout](https://github.com/freescout-help-desk/freescout) with the
+[API & Webhooks Module](https://freescout.net/module/api-webhooks/).
 
 ## Building
 
@@ -55,12 +57,10 @@ variables.
 | `BIND_ADDR`                 | :x:                | This is the address to bind the server to. Defaults to `[::1]:3000`.                                                | `[::]:3000`                                    |
 | `TRUSTED_PROXIES`           | :x:                | Proxy servers to trust when reading client IP headers. Provide addresses in a comma separated list.Defaults to `*`. | `192.0.2.1,192.0.2.2,2001:db8::1,2001:db8::2`  |
 | `GIN_MODE`                  | :x:                | Mode to run Gin in. Only set to `debug` for development. Defaults to `release`.                                     | `release`                                      |
-| `TICKET_API_URL`            | :heavy_check_mark: | URL of endpoint to call when submitting a ticket.                                                                   | `https://tickets.example.com/api/tickets.json` |
+| `TICKET_API_URL`            | :heavy_check_mark: | URL of endpoint to call when submitting a ticket.                                                                   | `https://tickets.example/api/conversations`    |
 | `TICKET_HEALTH_URL`         | :heavy_check_mark: | URL of endpoint to call for health checks on the ticketing system.                                                  | `https://tickets.example.com`                  |
-| `TICKET_API_KEY`            | :heavy_check_mark: | API key to pass in `X-API-Key` header to server.                                                                    |                                                |
-| `TICKET_SHOULD_ALERT`       | :x:                | Should an alert be sent by ticketing system to agents? Defaults to `true`.                                          |                                                |
-| `TICKET_SHOULD_AUTORESPOND` | :x:                | Should an autoresponse email be sent to the user? Defaults to `true`.                                               |                                                |
-| `TICKET_SOURCE`             | :x:                | Source of message to show in ticketing system. Defaults to `API`.                                                   | `API`                                          |
+| `TICKET_API_KEY`            | :heavy_check_mark: | API key to pass in `X-Freescout-API-Key` header to server.                                                          |                                                |
+| `TICKET_MAILBOX_ID`         | :heavy_check_mark: | ID of mailbox to send message to.                                                                                   | `1`                                            |
 
 ### Binary
 
