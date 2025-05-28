@@ -1,22 +1,21 @@
 # SPDX-FileCopyrightText: 2023 Sidings Media
 # SPDX-License-Identifier: MIT
 
-FROM golang:latest as build
+FROM golang:1.23 AS build
 
 ## Build
 WORKDIR /build
 
-COPY go.mod /build
-COPY go.sum /build
+COPY go.mod go.sum ./
 
 # Download go modules
 RUN go mod download
 
 # Copy all files
-COPY . /build
+COPY . ./
 
 # Compile binary
-RUN CGO_ENABLED=0 go build -a -o server
+RUN CGO_ENABLED=0  GOOS=linux go build -o server
 
 ## Deploy
 FROM gcr.io/distroless/base-debian10
